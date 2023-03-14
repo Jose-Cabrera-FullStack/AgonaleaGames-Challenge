@@ -6,11 +6,13 @@ using UnityEngine;
 public class GeneralCardScript : ScriptableObject
 {
 
-    public GeneralCardScript() {
+    public GeneralCardScript()
+    {
 
     }
 
-    public GeneralCardScript getCopy() {
+    public GeneralCardScript getCopy()
+    {
         return (GeneralCardScript)this.MemberwiseClone();
     }
 
@@ -33,8 +35,9 @@ public class GeneralCardScript : ScriptableObject
     public Material armourMaterialMale, armourMaterialFemale;
     [Header("Musical Configuration")]
     public GameplayConfiguration gameplayConfiguration;
-    
-    public int getTotalDamage () {
+
+    public int getTotalDamage()
+    {
         int damage = 0;
         damage += gameplayConfiguration.fireDamage;
         damage += gameplayConfiguration.bleedDamage;
@@ -44,10 +47,11 @@ public class GeneralCardScript : ScriptableObject
         damage += gameplayConfiguration.lightingDamage;
         return damage;
     }
-    
+
 }
 
-public enum Rarity {
+public enum Rarity
+{
     Common,
     Rare,
     Epic,
@@ -56,7 +60,8 @@ public enum Rarity {
     Seasonal
 }
 
-public enum Category {
+public enum Category
+{
     Armor,
     Helmet,
     Magic,
