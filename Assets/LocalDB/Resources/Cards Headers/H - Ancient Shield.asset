@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15da3593055cd94794e4c8c5cd16359, type: 3}
+  m_Name: H - Ancient Shield
+  m_EditorClassIdentifier: 
+  level: 1
+  ID: CA3
+  cardName: Ancient Shield
+  description: This ancient shield cointains the power of all the warriors who've
+    used it.
+  rarity: 0
+  category: 4
+  sprite: {fileID: 21300000, guid: 7ee7d3f2ee6846e488a9d56eaed1b78a, type: 3}
+  avaiableLevels: 5
+  avaiableCards: 1
+  upgradeIntFunction: 1
+  upgradeIntFunctionValue: 1.47
+  upgradeFloatFunction: 2
+  upgradeFloatFunctionValue: 1.1
+  Model3D: {fileID: 143776, guid: ef194ae8031ae54469b701341eced40f, type: 3}
+  armourMaterialMale: {fileID: 0}
+  armourMaterialFemale: {fileID: 0}
+  gameplayConfiguration:
+    physicDamage: 43
+    magicDamage: 0
+    fireDamage: 0
+    lightingDamage: 0
+    poisonDamage: 0
+    bleedDamage: 0
+    physicResistancePorcentage: 0
+    magicResistancePorcentage: 0
+    fireResistancePorcentage: 0
+    lightingResistancePorcentage: 0
+    poisonResistancePorcentage: 0
+    bleedResistancePorcentage: 0
+    physicDamageBonus: 0
+    magicDamageBonus: 0
+    fireDamageBonus: 0
+    lightingDamageBonus: 0
+    poisonDamageBonus: 0
+    bleedDamageBonus: 0
+    blockAmount: 0.3
+    dodgeChance: 0.01
+    criticalChange: 0
+    criticalMultiplier: 2
+    healthPointBoost: 0
+    hitAmount: 1
+    attackPrecisionModifier: 1
+    isMagic: 0
+    attackAnimation: 0
+    defenseAnimation: 0
+    attackSFX: {fileID: 0}
+    defenseSFX: {fileID: 0}
+    tapSFX: {fileID: 0}

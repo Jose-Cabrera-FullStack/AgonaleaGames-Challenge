@@ -1,0 +1,16 @@
+{
+    "CommonBox": {
+        "chances": {
+            "common": 70,
+            "epic": 30
+        },
+        "amount": 2
+    },
+    "EpicBox": {
+        "chances": {
+            "common": 40,
+            "epic": 60
+        },
+        "amount": 4
+    }
+}

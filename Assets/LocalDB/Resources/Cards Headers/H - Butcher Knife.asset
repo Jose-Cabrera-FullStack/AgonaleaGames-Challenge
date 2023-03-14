@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15da3593055cd94794e4c8c5cd16359, type: 3}
+  m_Name: H - Butcher Knife
+  m_EditorClassIdentifier: 
+  level: 1
+  ID: CA15
+  cardName: Butcher Knife
+  description: 
+  rarity: 2
+  category: 5
+  sprite: {fileID: 21300000, guid: 4014587b1663146439d3c48984ab951c, type: 3}
+  maxLevel: 0
+  avaiableCards: 1
+  Model3D: {fileID: 138724, guid: 109b198c4a8b5264fa4c4a45caded709, type: 3}
+  armourMaterialMale: {fileID: 0}
+  armourMaterialFemale: {fileID: 0}
+  gameplayConfiguration:
+    physicDamage: 180
+    magicDamage: 0
+    fireDamage: 0
+    lightingDamage: 0
+    poisonDamage: 0
+    bleedDamage: 50
+    physicResistancePorcentage: 0
+    magicResistancePorcentage: 0
+    fireResistancePorcentage: 0
+    lightingResistancePorcentage: 0
+    poisonResistancePorcentage: 0
+    bleedResistancePorcentage: 0
+    physicDamageBonus: 0
+    magicDamageBonus: 0
+    fireDamageBonus: 0
+    lightingDamageBonus: 0
+    poisonDamageBonus: 0
+    bleedDamageBonus: 0
+    blockAmount: 0
+    dodgeChance: 0
+    criticalChange: 0
+    criticalMultiplier: 2
+    healthPointBoost: 0

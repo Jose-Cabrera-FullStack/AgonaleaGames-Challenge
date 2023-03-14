@@ -1,0 +1,22 @@
+{
+    "cards": [
+        {
+            "name": "Carta 1",
+            "level": 1,
+            "rarity": "common",
+            "sprite": "sprite_1"
+        },
+        {
+            "name": "Carta 2",
+            "level": 5,
+            "rarity": "epic",
+            "sprite": "sprite_2"
+        },
+        {
+            "name": "Carta 3",
+            "level": 3,
+            "rarity": "rare",
+            "sprite": "sprite_3"
+        }
+    ]
+}
