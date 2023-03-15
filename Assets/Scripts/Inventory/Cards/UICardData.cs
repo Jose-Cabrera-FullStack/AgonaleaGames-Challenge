@@ -9,18 +9,23 @@ public class UICardData : MonoBehaviour
     CardManager cardManager;
 
 
-    void Awake()
+    void Start()
     {
         cardManager = FindObjectOfType<CardManager>();
         CardManager.Card card = cardManager.GetCard(cardName);
 
-        // Find child GameObject by name
         string childName = "Panel";
-        Transform childTransform = transform.Find(childName);
-        if (childTransform != null)
+        Transform panelChild = transform.Find(childName);
+
+        if (panelChild != null)
         {
-            GameObject childGameObject = childTransform.gameObject;
-            // Do something with the child GameObject...
+            for (int star = 0; star < panelChild.childCount; star++)
+            {
+                Transform childTransform = panelChild.GetChild(star);
+                if (star < card.level) childTransform.gameObject.SetActive(true);
+                else childTransform.gameObject.SetActive(false);
+
+            }
         }
     }
 

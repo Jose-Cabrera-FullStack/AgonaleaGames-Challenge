@@ -46,7 +46,7 @@ public class CardManager : MonoBehaviour
         public string sprite;
     }
 
-    private void Start()
+    private void Awake()
     {
         // TODO: Convertir en singlenton para evitar que se dupliquen las instancias.
 

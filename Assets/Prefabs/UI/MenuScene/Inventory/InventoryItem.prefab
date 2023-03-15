@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: -2.23, y: 0.5}
 --- !u!222 &7806387712634370017
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -496,7 +496,7 @@ CanvasGroup:
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  m_IgnoreParentGroups: 1
 --- !u!114 &3456938051993605375
 MonoBehaviour:
   m_ObjectHideFlags: 0
