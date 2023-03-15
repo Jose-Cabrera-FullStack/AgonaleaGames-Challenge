@@ -8,12 +8,14 @@ public class UICardData : MonoBehaviour
     CardManager cardManager;
     CardManager.Card card;
     Transform sprite;
+    Image background;
 
     void Awake()
     {
         cardManager = FindObjectOfType<CardManager>();
         card = cardManager.GetCard(cardName);
         sprite = transform.Find("Image");
+        background = GetComponent<Image>();
     }
 
 
@@ -26,8 +28,8 @@ public class UICardData : MonoBehaviour
 
     void chooseSprite()
     {
-        Image image = sprite.GetComponent<Image>();
-        image.sprite = card.sprite;
+        Image spriteCard = sprite.GetComponent<Image>();
+        spriteCard.sprite = card.sprite;
     }
 
     void starsRenders()
@@ -52,6 +54,6 @@ public class UICardData : MonoBehaviour
     }
     void chooseBackground()
     {
-
+        background.sprite = card.background;
     }
 }

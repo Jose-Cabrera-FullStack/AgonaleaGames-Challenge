@@ -69,7 +69,7 @@ public class CardManager : MonoBehaviour
             int level = cardData.level;
             string rarity = cardData.rarity;
             Sprite sprite = Resources.Load<Sprite>("Cards Assets/" + cardData.sprite);
-            Sprite background = Resources.Load<Sprite>("Textures/UI/Inventory/" + cardData.background);
+            Sprite background = Resources.Load<Sprite>("Inventory/" + cardData.background);
             Card card = new Card(name, level, rarity, sprite, background);
             cards.Add(card);
         }
