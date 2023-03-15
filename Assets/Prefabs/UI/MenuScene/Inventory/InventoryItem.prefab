@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78088eae52fe94181823cf9bf54d7f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Carta 1
+  cardName: Carta 2
 --- !u!114 &5552168357746646466
 MonoBehaviour:
   m_ObjectHideFlags: 0

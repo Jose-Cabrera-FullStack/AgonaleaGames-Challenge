@@ -12,13 +12,16 @@ public class CardManager : MonoBehaviour
         public int level;
         public string rarity;
         public Sprite sprite;
+        public Sprite background;
 
-        public Card(string name, int level, string rarity, Sprite sprite)
+
+        public Card(string name, int level, string rarity, Sprite sprite, Sprite background)
         {
             this.name = name;
             this.level = level;
             this.rarity = rarity;
             this.sprite = sprite;
+            this.background = background;
         }
     }
     // Lista de cartas
@@ -44,6 +47,7 @@ public class CardManager : MonoBehaviour
         public int level;
         public string rarity;
         public string sprite;
+        public string background;
     }
 
     private void Awake()
@@ -61,12 +65,12 @@ public class CardManager : MonoBehaviour
 
         foreach (CardJSON cardData in cardCollection.cards)
         {
-
             string name = cardData.name;
             int level = cardData.level;
             string rarity = cardData.rarity;
-            Sprite sprite = Resources.Load<Sprite>("Textures/UI/Inventory/" + cardData.sprite);
-            Card card = new Card(name, level, rarity, sprite);
+            Sprite sprite = Resources.Load<Sprite>("Cards Assets/" + cardData.sprite);
+            Sprite background = Resources.Load<Sprite>("Textures/UI/Inventory/" + cardData.background);
+            Card card = new Card(name, level, rarity, sprite, background);
             cards.Add(card);
         }
 

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.UI;
 using UnityEngine;
 
 public class UICardData : MonoBehaviour
@@ -7,26 +6,52 @@ public class UICardData : MonoBehaviour
     [SerializeField]
     string cardName;
     CardManager cardManager;
+    CardManager.Card card;
+    Transform sprite;
+
+    void Awake()
+    {
+        cardManager = FindObjectOfType<CardManager>();
+        card = cardManager.GetCard(cardName);
+        sprite = transform.Find("Image");
+    }
 
 
     void Start()
     {
-        cardManager = FindObjectOfType<CardManager>();
-        CardManager.Card card = cardManager.GetCard(cardName);
+        chooseSprite();
+        starsRenders();
+        chooseBackground();
+    }
 
+    void chooseSprite()
+    {
+        Image image = sprite.GetComponent<Image>();
+        image.sprite = card.sprite;
+    }
+
+    void starsRenders()
+    {
         string childName = "Panel";
-        Transform panelChild = transform.Find(childName);
 
-        if (panelChild != null)
+        Transform starsContainer = transform.Find(childName);
+
+        if (starsContainer != null)
         {
-            for (int star = 0; star < panelChild.childCount; star++)
+            for (int star = 0; star < starsContainer.childCount; star++)
             {
-                Transform childTransform = panelChild.GetChild(star);
-                if (star < card.level) childTransform.gameObject.SetActive(true);
-                else childTransform.gameObject.SetActive(false);
+                Transform childTransform = starsContainer.GetChild(star);
+
+                if (star < card.level)
+                    childTransform.gameObject.SetActive(true);
+                else
+                    childTransform.gameObject.SetActive(false);
 
             }
         }
     }
+    void chooseBackground()
+    {
 
+    }
 }
