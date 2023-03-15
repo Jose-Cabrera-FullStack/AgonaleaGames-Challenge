@@ -21,12 +21,35 @@ public class CardManager : MonoBehaviour
             this.sprite = sprite;
         }
     }
-
     // Lista de cartas
     private List<Card> cards = new List<Card>();
 
+    // Clase que modela una colección de cartas (se usa para parsear el archivo JSON)
+    [System.Serializable]
+    public class CardCollection
+    {
+        public List<Card> cards;
+    }
+
+    [System.Serializable]
+    public class CardCollectionJSON
+    {
+        public List<CardJSON> cards;
+    }
+
+    [System.Serializable]
+    public class CardJSON
+    {
+        public string name;
+        public int level;
+        public string rarity;
+        public string sprite;
+    }
+
     private void Start()
     {
+        // TODO: Convertir en singlenton para evitar que se dupliquen las instancias.
+
         // Parseamos el archivo JSON y creamos las cartas
         ParseCardConfigFile();
     }
@@ -34,9 +57,19 @@ public class CardManager : MonoBehaviour
     private void ParseCardConfigFile()
     {
         // Parseamos el archivo JSON y lo convertimos en una lista de cartas
-        CardCollection cardCollection = JsonUtility.FromJson<CardCollection>(cardConfigFile.text);
-        cards = cardCollection.cards;
-        Debug.Log($"cards:{cardConfigFile.text}");
+        CardCollectionJSON cardCollection = JsonUtility.FromJson<CardCollectionJSON>(cardConfigFile.text);
+
+        foreach (CardJSON cardData in cardCollection.cards)
+        {
+
+            string name = cardData.name;
+            int level = cardData.level;
+            string rarity = cardData.rarity;
+            Sprite sprite = Resources.Load<Sprite>("Textures/UI/Inventory/" + cardData.sprite);
+            Card card = new Card(name, level, rarity, sprite);
+            cards.Add(card);
+        }
+
     }
 
     // Función para obtener la información de una carta a partir de su nombre
@@ -48,12 +81,5 @@ public class CardManager : MonoBehaviour
             Debug.LogError("Card not found: " + cardName);
         }
         return card;
-    }
-
-    // Clase que modela una colección de cartas (se usa para parsear el archivo JSON)
-    [System.Serializable]
-    public class CardCollection
-    {
-        public List<Card> cards;
     }
 }

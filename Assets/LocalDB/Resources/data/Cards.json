@@ -4,19 +4,19 @@
             "name": "Carta 1",
             "level": 1,
             "rarity": "common",
-            "sprite": "sprite_1"
+            "sprite": "common-slot"
         },
         {
             "name": "Carta 2",
             "level": 5,
             "rarity": "epic",
-            "sprite": "sprite_2"
+            "sprite": "epic-slot"
         },
         {
             "name": "Carta 3",
             "level": 3,
             "rarity": "rare",
-            "sprite": "sprite_3"
+            "sprite": "rare-slot"
         }
     ]
 }

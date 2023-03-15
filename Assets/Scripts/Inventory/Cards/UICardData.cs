@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class UICardData : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    string cardName;
+    CardManager cardManager;
+
+
+    void Awake()
     {
-        
+        cardManager = FindObjectOfType<CardManager>();
+        CardManager.Card card = cardManager.GetCard(cardName);
+
+        // Find child GameObject by name
+        string childName = "Panel";
+        Transform childTransform = transform.Find(childName);
+        if (childTransform != null)
+        {
+            GameObject childGameObject = childTransform.gameObject;
+            // Do something with the child GameObject...
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

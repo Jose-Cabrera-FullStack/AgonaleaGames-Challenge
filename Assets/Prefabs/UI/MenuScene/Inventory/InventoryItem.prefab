@@ -373,6 +373,7 @@ GameObject:
   - component: {fileID: 5305308013552896577}
   - component: {fileID: 5351748626886296745}
   - component: {fileID: 3456938051993605375}
+  - component: {fileID: 5552168357746646466}
   m_Layer: 5
   m_Name: InventoryItem
   m_TagString: Untagged
@@ -508,6 +509,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78088eae52fe94181823cf9bf54d7f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardName: Carta 1
+--- !u!114 &5552168357746646466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808614649182018098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b98984834d249b418c7655988affd63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardConfigFile: {fileID: 4900000, guid: e31ab4f9ed68d364ead013c601233223, type: 3}
 --- !u!1 &3826378115031520560
 GameObject:
   m_ObjectHideFlags: 0
