@@ -3,8 +3,17 @@ using UnityEngine;
 
 public class UICardData : MonoBehaviour
 {
-    [SerializeField]
-    string cardName;
+    private string _cardName;
+
+    public string cardName
+    {
+        get { return _cardName; }
+        set
+        {
+            _cardName = value;
+            reRender();
+        }
+    }
     CardManager cardManager;
     CardManager.Card card;
     Transform sprite;
@@ -13,17 +22,25 @@ public class UICardData : MonoBehaviour
     void Awake()
     {
         cardManager = FindObjectOfType<CardManager>();
-        card = cardManager.GetCard(cardName);
         sprite = transform.Find("Image");
         background = GetComponent<Image>();
     }
 
 
-    void Start()
+    void Update()
     {
-        chooseSprite();
-        starsRenders();
-        chooseBackground();
+        reRender();
+    }
+
+    public void reRender()
+    {
+        card = cardManager.GetCard(cardName);
+        if (card != null)
+        {
+            chooseSprite();
+            starsRenders();
+            chooseBackground();
+        }
     }
 
     void chooseSprite()

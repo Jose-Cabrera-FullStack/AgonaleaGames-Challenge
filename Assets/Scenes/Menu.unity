@@ -342,6 +342,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498998418}
   m_CullTransparentMesh: 0
+--- !u!1 &647499511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2808614649182018098, guid: 6570274cea66ad7479afeea12dc62bdf,
+    type: 3}
+  m_PrefabInstance: {fileID: 741733415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,6 +783,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 3.2700043
       objectReference: {fileID: 0}
+    - target: {fileID: 3456938051993605375, guid: 6570274cea66ad7479afeea12dc62bdf,
+        type: 3}
+      propertyPath: cardName
+      value: Carta 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4291748353118054008, guid: 6570274cea66ad7479afeea12dc62bdf,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -811,6 +822,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25.26215
+      objectReference: {fileID: 0}
+    - target: {fileID: 5351748626886296745, guid: 6570274cea66ad7479afeea12dc62bdf,
+        type: 3}
+      propertyPath: m_IgnoreParentGroups
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6464352529484432845, guid: 6570274cea66ad7479afeea12dc62bdf,
         type: 3}
@@ -1421,6 +1437,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1959102702}
+        m_MethodName: GetButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &963417333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1855,6 +1882,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152017021}
   m_CullTransparentMesh: 0
+--- !u!1 &1155695472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2808614649182018098, guid: 6570274cea66ad7479afeea12dc62bdf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1276785173}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1183171678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,6 +2307,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 3.2700043
       objectReference: {fileID: 0}
+    - target: {fileID: 3456938051993605375, guid: 6570274cea66ad7479afeea12dc62bdf,
+        type: 3}
+      propertyPath: cardName
+      value: Carta 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4291748353118054008, guid: 6570274cea66ad7479afeea12dc62bdf,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2313,6 +2351,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: 25 DMG
+      objectReference: {fileID: 0}
+    - target: {fileID: 5351748626886296745, guid: 6570274cea66ad7479afeea12dc62bdf,
+        type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5959221699435918358, guid: 6570274cea66ad7479afeea12dc62bdf,
         type: 3}
@@ -3233,6 +3276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 349f6d141187c491e8e83dba19aa0ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardPrefabLeft: {fileID: 647499511}
+  cardPrefabRight: {fileID: 1155695472}
+  chancesJSON: {fileID: 4900000, guid: b274d07b35a804b669692d6d8f18cf8f, type: 3}
 --- !u!1 &2031292750
 GameObject:
   m_ObjectHideFlags: 0
