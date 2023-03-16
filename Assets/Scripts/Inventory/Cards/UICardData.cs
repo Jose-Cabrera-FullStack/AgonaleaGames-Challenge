@@ -3,19 +3,8 @@ using UnityEngine;
 
 public class UICardData : MonoBehaviour
 {
-    private string _cardName;
-
-    public string cardName
-    {
-        get { return _cardName; }
-        set
-        {
-            _cardName = value;
-            reRender();
-        }
-    }
     CardManager cardManager;
-    CardManager.Card card;
+    public CardManager.Card card;
     Transform sprite;
     Image background;
 
@@ -26,13 +15,7 @@ public class UICardData : MonoBehaviour
         background = GetComponent<Image>();
     }
 
-
-    void Update()
-    {
-        reRender();
-    }
-
-    public void reRender()
+    public void pickCard(string cardName)
     {
         card = cardManager.GetCard(cardName);
         if (card != null)

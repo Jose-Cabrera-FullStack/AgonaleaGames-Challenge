@@ -7,24 +7,42 @@ public class Lootboxes : MonoBehaviour
     [SerializeField] GameObject cardPrefabLeft;
     [SerializeField] GameObject cardPrefabRight;
     [SerializeField] TextAsset chancesJSON;
-    UICardData uiCardDataLeft;
-    UICardData uiCardDataRight;
+    Transform cardsCointainer;
+    List<GameObject> cardsCointainerChildren;
 
-    void Start()
+    void Awake()
     {
-        uiCardDataLeft = cardPrefabLeft.GetComponent<UICardData>();
-        // uiCardDataRight = cardPrefabRight.GetComponent<UICardData>();
+        Transform LootboxOpenPopUp = transform.Find("LootboxOpenPopUp");
+
+        cardsCointainer = LootboxOpenPopUp.Find("CardsCointainer");
+
+        // chancesData = JsonUtility.FromJson<Dictionary<string, Dictionary<string, int>>>(chancesJSON.text);
+    }
+
+    void showCards()
+    {
+        for (int i = 0; i < cardsCointainer.childCount; i += 1)
+        {
+            Transform card = cardsCointainer.GetChild(i);
+            if (i < 2)
+            {
+                UICardData uiCard = card.GetComponent<UICardData>();
+                card.gameObject.SetActive(true);
+                Debug.Log($"{card}");
+            }
+            else
+                card.gameObject.SetActive(false);
+        }
+
     }
 
     public void OpenCommonBox()
     {
-        // Debug.Log($"antes Common:{uiCardDataLeft.cardName}");
-        // uiCardDataLeft.cardName = "Card 5";
-        // uiCardDataLeft.reRender();
-
-        // Debug.Log($"despues Common:{uiCardDataLeft.cardName}");
-
-
+        // int amount = chancesData["CommonBox"]["amount"];
+        // List<CardManager.Card> cards = new List<CardManager.Card>();
+        showCards();
+        // uiCardDataLeft.pickCard("Carta 5");
+        // uiCardDataRight.pickCard("Carta 2");
     }
 
     public void OpenEpicBox()
@@ -38,4 +56,5 @@ public class Lootboxes : MonoBehaviour
         Debug.Log($"GetButton");
 
     }
+
 }
