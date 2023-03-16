@@ -7,48 +7,56 @@ public class Lootboxes : MonoBehaviour
     [SerializeField] GameObject cardPrefabLeft;
     [SerializeField] GameObject cardPrefabRight;
     [SerializeField] TextAsset chancesJSON;
+    BoxChances chancesData;
     Transform cardsCointainer;
     List<GameObject> cardsCointainerChildren;
+    CardManager cardManager;
+    List<CardManager.Card> cards;
 
     void Awake()
     {
         Transform LootboxOpenPopUp = transform.Find("LootboxOpenPopUp");
-
         cardsCointainer = LootboxOpenPopUp.Find("CardsCointainer");
-
-        // chancesData = JsonUtility.FromJson<Dictionary<string, Dictionary<string, int>>>(chancesJSON.text);
+        chancesData = JsonUtility.FromJson<BoxChances>(chancesJSON.text);
+        cardManager = FindObjectOfType<CardManager>();
+        cards = cardManager.cards;
     }
 
-    void showCards()
+    void showCards(int cardAmount, string lootboxType)
     {
-        for (int i = 0; i < cardsCointainer.childCount; i += 1)
+        List<CardManager.Card> generatedCards = GenerateCards(lootboxType);
+
+        int i = 0;
+
+        foreach (CardManager.Card card in generatedCards)
         {
-            Transform card = cardsCointainer.GetChild(i);
-            if (i < 2)
-            {
-                UICardData uiCard = card.GetComponent<UICardData>();
-                card.gameObject.SetActive(true);
-                Debug.Log($"{card}");
-            }
-            else
-                card.gameObject.SetActive(false);
+            if (i >= cardAmount)
+                break;
+
+            Transform cardTransform = cardsCointainer.GetChild(i);
+            UICardData uiCard = cardTransform.GetComponent<UICardData>();
+            uiCard.pickCard(card.name); // configurar la información de la tarjeta en la interfaz de usuario
+            cardTransform.gameObject.SetActive(true); // mostrar la tarjeta en la interfaz de usuario
+
+            i++;
         }
 
+        // ocultar las tarjetas restantes
+        for (; i < cardsCointainer.childCount; i++)
+        {
+            Transform cardTransform = cardsCointainer.GetChild(i);
+            cardTransform.gameObject.SetActive(false);
+        }
     }
 
     public void OpenCommonBox()
     {
-        // int amount = chancesData["CommonBox"]["amount"];
-        // List<CardManager.Card> cards = new List<CardManager.Card>();
-        showCards();
-        // uiCardDataLeft.pickCard("Carta 5");
-        // uiCardDataRight.pickCard("Carta 2");
+        showCards(chancesData.CommonBox.amount, "CommonBox");
     }
 
     public void OpenEpicBox()
     {
-        //TODO implement it.
-        Debug.Log($"Epic");
+        showCards(chancesData.EpicBox.amount, "EpicBox");
     }
 
     public void GetButtonClicked()
@@ -57,4 +65,89 @@ public class Lootboxes : MonoBehaviour
 
     }
 
+    CardManager.Card GetRandomCardByRarity(string rarity, List<CardManager.Card> usedCards)
+    {
+        List<CardManager.Card> filteredCards = cards.FindAll(card => card.rarity == rarity && !usedCards.Contains(card));
+        if (filteredCards.Count == 0)
+        {
+            Debug.LogWarning($"No {rarity} cards available");
+            return null;
+        }
+        int randomIndex = Random.Range(0, filteredCards.Count);
+        return filteredCards[randomIndex];
+    }
+
+    public List<CardManager.Card> GenerateCards(string lootboxType)
+    {
+        List<CardManager.Card> usedCards = new List<CardManager.Card>();
+        List<CardManager.Card> generatedCards = new List<CardManager.Card>();
+
+        BoxChances.BoxData boxData = null;
+
+        if (lootboxType == "CommonBox")
+        {
+            boxData = chancesData.CommonBox;
+        }
+        else if (lootboxType == "EpicBox")
+        {
+            boxData = chancesData.EpicBox;
+        }
+        else
+        {
+            Debug.LogError($"Invalid lootbox type: {lootboxType}");
+            return generatedCards;
+        }
+
+        var chances = boxData.chances;
+        int totalAmount = boxData.amount;
+
+        int commonAmount = Mathf.RoundToInt(totalAmount * chances.common / 100f);
+        int epicAmount = totalAmount - commonAmount;
+        // generate mandatory card of the same rarity
+        string rarity = (chances.common >= chances.epic) ? "common" : "epic";
+        CardManager.Card mandatoryCard = GetRandomCardByRarity(rarity, usedCards);
+        if (mandatoryCard != null)
+        {
+            generatedCards.Add(mandatoryCard);
+            usedCards.Add(mandatoryCard);
+        }
+        // generate remaining cards
+        for (int i = 1; i < totalAmount; i++)
+        {
+            rarity = (i < commonAmount) ? "common" : "epic";
+            CardManager.Card randomCard = GetRandomCardByRarity(rarity, usedCards);
+            if (randomCard != null)
+            {
+                generatedCards.Add(randomCard);
+                usedCards.Add(randomCard);
+            }
+        }
+        return generatedCards;
+    }
+
+
+
+    [System.Serializable]
+    public class BoxChances
+    {
+        public BoxData CommonBox;
+        public BoxData EpicBox;
+
+        [System.Serializable]
+        public class BoxData
+        {
+            public BoxChancesData chances;
+            public int amount;
+        }
+
+        [System.Serializable]
+        public class BoxChancesData
+        {
+            public int common;
+            public int epic;
+        }
+    }
+
 }
+
+

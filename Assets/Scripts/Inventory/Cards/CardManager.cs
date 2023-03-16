@@ -25,7 +25,7 @@ public class CardManager : MonoBehaviour
         }
     }
     // Lista de cartas
-    private List<Card> cards = new List<Card>();
+    public List<Card> cards = new List<Card>();
 
     // Clase que modela una colección de cartas (se usa para parsear el archivo JSON)
     [System.Serializable]
