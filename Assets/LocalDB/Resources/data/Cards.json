@@ -3,8 +3,29 @@
         {
             "name": "Carta 1",
             "level": 1,
-            "rarity": "rare",
+            "rarity": "common",
             "sprite": "butcher_knife",
+            "background": "common-slot"
+        },
+        {
+            "name": "Carta 10",
+            "level": 1,
+            "rarity": "common",
+            "sprite": "black_magic_ring",
+            "background": "common-slot"
+        },
+        {
+            "name": "Carta 9",
+            "level": 1,
+            "rarity": "common",
+            "sprite": "ancient_shield",
+            "background": "common-slot"
+        },
+        {
+            "name": "Carta 11",
+            "level": 1,
+            "rarity": "common",
+            "sprite": "bird_helmet",
             "background": "common-slot"
         },
         {
@@ -33,6 +54,27 @@
             "level": 5,
             "rarity": "epic",
             "sprite": "bird_helmet",
+            "background": "epic-slot"
+        },
+        {
+            "name": "Carta 6",
+            "level": 2,
+            "rarity": "epic",
+            "sprite": "ancient_shield",
+            "background": "epic-slot"
+        },
+        {
+            "name": "Carta 7",
+            "level": 3,
+            "rarity": "epic",
+            "sprite": "black_magic_ring",
+            "background": "epic-slot"
+        },
+        {
+            "name": "Carta 8",
+            "level": 4,
+            "rarity": "epic",
+            "sprite": "bounty_hunter_cloak",
             "background": "epic-slot"
         }
     ]
