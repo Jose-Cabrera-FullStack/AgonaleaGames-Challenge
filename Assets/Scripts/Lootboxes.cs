@@ -5,18 +5,20 @@ using UnityEngine;
 public class Lootboxes : MonoBehaviour
 {
     [SerializeField] TextAsset chancesJSON;
+    [SerializeField] GameObject cardPrefab;
     List<CardManager.Card> obtainedCards = new List<CardManager.Card>();
     BoxChances chancesData;
     Transform cardsCointainer;
     List<GameObject> cardsCointainerChildren;
     CardManager cardManager;
     List<CardManager.Card> cards;
+    Transform ObtainedCardsContainer;
 
     void Awake()
     {
         Transform LootboxOpenPopUp = transform.Find("LootboxOpenPopUp");
-        Transform ObtainedCardsContainer = transform.Find("ObtainedCardsContainer");
 
+        ObtainedCardsContainer = GameObject.FindGameObjectWithTag("ObtainedCardsContainer").transform;
         cardsCointainer = LootboxOpenPopUp.Find("CardsCointainer");
         chancesData = JsonUtility.FromJson<BoxChances>(chancesJSON.text);
         cardManager = FindObjectOfType<CardManager>();
@@ -61,17 +63,16 @@ public class Lootboxes : MonoBehaviour
 
     public void GetButtonClicked()
     {
-        // TODO: Instanciar prefab Card por cada card en obtainecards
-        int i = 0;
-        foreach (CardManager.Card card in obtainedCards)
+        if (obtainedCards.Count > 0)
         {
+            foreach (CardManager.Card card in obtainedCards)
+            {
+                GameObject newCardObject = Instantiate(cardPrefab, Vector3.zero, Quaternion.identity);
+                newCardObject.GetComponent<UICardData>().pickCard(card.name);
+                newCardObject.transform.parent = ObtainedCardsContainer;
 
-            Transform cardTransform = cardsCointainer.GetChild(i);
-
-            i++;
+            }
         }
-        Debug.Log($"{obtainedCards.Count}");
-
     }
 
     CardManager.Card GetRandomCardByRarity(string rarity, List<CardManager.Card> obtainedCards)
