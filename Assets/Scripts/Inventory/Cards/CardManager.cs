@@ -53,14 +53,11 @@ public class CardManager : MonoBehaviour
     private void Awake()
     {
         // TODO: Convertir en singlenton para evitar que se dupliquen las instancias.
-
-        // Parseamos el archivo JSON y creamos las cartas
         ParseCardConfigFile();
     }
 
     private void ParseCardConfigFile()
     {
-        // Parseamos el archivo JSON y lo convertimos en una lista de cartas
         CardCollectionJSON cardCollection = JsonUtility.FromJson<CardCollectionJSON>(cardConfigFile.text);
 
         foreach (CardJSON cardData in cardCollection.cards)
@@ -76,7 +73,6 @@ public class CardManager : MonoBehaviour
 
     }
 
-    // Función para obtener la información de una carta a partir de su nombre
     public Card GetCard(string cardName)
     {
         Card card = cards.Find(c => c.name == cardName);

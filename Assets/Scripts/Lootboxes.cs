@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Lootboxes : MonoBehaviour
 {
-    [SerializeField] GameObject cardPrefabLeft;
-    [SerializeField] GameObject cardPrefabRight;
     [SerializeField] TextAsset chancesJSON;
+    List<CardManager.Card> obtainedCards = new List<CardManager.Card>();
     BoxChances chancesData;
     Transform cardsCointainer;
     List<GameObject> cardsCointainerChildren;
@@ -16,6 +15,8 @@ public class Lootboxes : MonoBehaviour
     void Awake()
     {
         Transform LootboxOpenPopUp = transform.Find("LootboxOpenPopUp");
+        Transform ObtainedCardsContainer = transform.Find("ObtainedCardsContainer");
+
         cardsCointainer = LootboxOpenPopUp.Find("CardsCointainer");
         chancesData = JsonUtility.FromJson<BoxChances>(chancesJSON.text);
         cardManager = FindObjectOfType<CardManager>();
@@ -60,14 +61,22 @@ public class Lootboxes : MonoBehaviour
 
     public void GetButtonClicked()
     {
-        // TODO: Add cardsObtained
-        Debug.Log($"GetButton");
+        // TODO: Instanciar prefab Card por cada card en obtainecards
+        int i = 0;
+        foreach (CardManager.Card card in obtainedCards)
+        {
+
+            Transform cardTransform = cardsCointainer.GetChild(i);
+
+            i++;
+        }
+        Debug.Log($"{obtainedCards.Count}");
 
     }
 
-    CardManager.Card GetRandomCardByRarity(string rarity, List<CardManager.Card> usedCards)
+    CardManager.Card GetRandomCardByRarity(string rarity, List<CardManager.Card> obtainedCards)
     {
-        List<CardManager.Card> filteredCards = cards.FindAll(card => card.rarity == rarity && !usedCards.Contains(card));
+        List<CardManager.Card> filteredCards = cards.FindAll(card => card.rarity == rarity && !obtainedCards.Contains(card));
         if (filteredCards.Count == 0)
         {
             Debug.LogWarning($"No {rarity} cards available");
@@ -79,7 +88,6 @@ public class Lootboxes : MonoBehaviour
 
     public List<CardManager.Card> GenerateCards(string lootboxType)
     {
-        List<CardManager.Card> usedCards = new List<CardManager.Card>();
         List<CardManager.Card> generatedCards = new List<CardManager.Card>();
 
         BoxChances.BoxData boxData = null;
@@ -105,21 +113,21 @@ public class Lootboxes : MonoBehaviour
         int epicAmount = totalAmount - commonAmount;
 
         string rarity = (chances.common >= chances.epic) ? "common" : "epic";
-        CardManager.Card mandatoryCard = GetRandomCardByRarity(rarity, usedCards);
+        CardManager.Card mandatoryCard = GetRandomCardByRarity(rarity, obtainedCards);
         if (mandatoryCard != null)
         {
             generatedCards.Add(mandatoryCard);
-            usedCards.Add(mandatoryCard);
+            obtainedCards.Add(mandatoryCard);
         }
 
         for (int i = 1; i < totalAmount; i++)
         {
             rarity = (i < commonAmount) ? "common" : "epic";
-            CardManager.Card randomCard = GetRandomCardByRarity(rarity, usedCards);
+            CardManager.Card randomCard = GetRandomCardByRarity(rarity, obtainedCards);
             if (randomCard != null)
             {
                 generatedCards.Add(randomCard);
-                usedCards.Add(randomCard);
+                obtainedCards.Add(randomCard);
             }
         }
         return generatedCards;
