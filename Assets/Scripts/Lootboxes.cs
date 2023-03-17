@@ -35,13 +35,12 @@ public class Lootboxes : MonoBehaviour
 
             Transform cardTransform = cardsCointainer.GetChild(i);
             UICardData uiCard = cardTransform.GetComponent<UICardData>();
-            uiCard.pickCard(card.name); // configurar la información de la tarjeta en la interfaz de usuario
-            cardTransform.gameObject.SetActive(true); // mostrar la tarjeta en la interfaz de usuario
+            uiCard.pickCard(card.name);
+            cardTransform.gameObject.SetActive(true);
 
             i++;
         }
 
-        // ocultar las tarjetas restantes
         for (; i < cardsCointainer.childCount; i++)
         {
             Transform cardTransform = cardsCointainer.GetChild(i);
@@ -61,6 +60,7 @@ public class Lootboxes : MonoBehaviour
 
     public void GetButtonClicked()
     {
+        // TODO: Add cardsObtained
         Debug.Log($"GetButton");
 
     }
@@ -103,7 +103,7 @@ public class Lootboxes : MonoBehaviour
 
         int commonAmount = Mathf.RoundToInt(totalAmount * chances.common / 100f);
         int epicAmount = totalAmount - commonAmount;
-        // generate mandatory card of the same rarity
+
         string rarity = (chances.common >= chances.epic) ? "common" : "epic";
         CardManager.Card mandatoryCard = GetRandomCardByRarity(rarity, usedCards);
         if (mandatoryCard != null)
@@ -111,7 +111,7 @@ public class Lootboxes : MonoBehaviour
             generatedCards.Add(mandatoryCard);
             usedCards.Add(mandatoryCard);
         }
-        // generate remaining cards
+
         for (int i = 1; i < totalAmount; i++)
         {
             rarity = (i < commonAmount) ? "common" : "epic";
