@@ -6,7 +6,6 @@ public class DeleteInstanceTrigger : MonoBehaviour
 {
     void OnTriggerEnter(Collider note)
     {
-        Debug.Log($"entraa");
         Destroy(note.gameObject);
     }
 }
