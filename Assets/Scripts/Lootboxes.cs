@@ -69,7 +69,7 @@ public class Lootboxes : MonoBehaviour
             {
                 GameObject newCardObject = Instantiate(cardPrefab, Vector3.zero, Quaternion.identity);
                 newCardObject.GetComponent<UICardData>().pickCard(card.name);
-                newCardObject.transform.parent = ObtainedCardsContainer;
+                newCardObject.transform.SetParent(ObtainedCardsContainer);
 
             }
         }
