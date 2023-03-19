@@ -8,7 +8,7 @@ public class HighwayManager : MonoBehaviour
     [SerializeField] GameObject noteAttackPrefab;
     [SerializeField] GameObject noteDefensePrefab;
     int initialPositionNoteZ = 7;
-    float initialPositionNoteY = .9f;
+    float initialPositionNoteY = .7f;
 
     Transform leftLine;
     Transform midLine;
@@ -59,57 +59,5 @@ public class HighwayManager : MonoBehaviour
         newNote.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         newNote.transform.parent = line;
     }
-
-    // void Update()
-    // {
-
-    //     int noteType = Random.Range(0, 2);
-
-    //     Transform randomLine = GetRandomLine();
-
-    //     GameObject newCardObject;
-
-    //     if (noteType == 0)
-    //     {
-    //         newCardObject = Instantiate(
-    //                 noteAttackPrefab,
-    //                 new Vector3(randomLine.position.x,
-    //                 initialPositionNoteY,
-    //                 randomLine.position.z + initialPositionNoteZ),
-    //                 Quaternion.identity
-    //             );
-    //     }
-    //     else
-    //     {
-    //         newCardObject = Instantiate(
-    //                 noteDefensePrefab,
-    //                 new Vector3(randomLine.position.x,
-    //                 initialPositionNoteY,
-    //                 randomLine.position.z + initialPositionNoteZ),
-    //                 Quaternion.identity
-    //             );
-    //     }
-    //     newCardObject.transform.parent = randomLine;
-
-    // }
-
-    // Transform GetRandomLine()
-    // {
-    //     int lineIndex = Random.Range(0, 3);
-
-    //     if (lineIndex == 0)
-    //     {
-    //         return leftLine;
-    //     }
-    //     else if (lineIndex == 1)
-    //     {
-    //         return midLine;
-    //     }
-    //     else
-    //     {
-    //         return rightLine;
-    //     }
-    // }
-
 
 }
