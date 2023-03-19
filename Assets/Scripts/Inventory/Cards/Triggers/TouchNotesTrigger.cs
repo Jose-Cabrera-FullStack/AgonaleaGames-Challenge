@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TouchNotesTrigger : MonoBehaviour
 {
-    public Vector3 size = new Vector3(1, 1, 1);
-    public int points = 0;
+    [SerializeField] TextMeshPro scoreText;
+    [SerializeField] Vector3 size = new Vector3(1, 1, 1);
 
     Point touchPoint;
 
@@ -39,9 +40,7 @@ public class TouchNotesTrigger : MonoBehaviour
             touchPoint = Point.Bad;
         }
 
-        points++;
-
-        Debug.Log($"Score: {touchPoint.ToString()}");
+        scoreText.text = touchPoint.ToString();
     }
 
     void OnMouseDown()
@@ -52,6 +51,7 @@ public class TouchNotesTrigger : MonoBehaviour
             if (obj != null && obj.activeSelf && IsObjectInTrigger(obj))
             {
                 Score(obj);
+                Destroy(obj);
             }
         }
     }
@@ -64,6 +64,7 @@ public class TouchNotesTrigger : MonoBehaviour
             if (obj != null && obj.activeSelf && IsObjectInTrigger(obj))
             {
                 Score(obj);
+                Destroy(obj);
             }
         }
     }
@@ -78,13 +79,11 @@ public class TouchNotesTrigger : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        scoreText.text = Point.Miss.ToString();
         if (objectsInTrigger.Contains(other.gameObject))
         {
+
             objectsInTrigger.Remove(other.gameObject);
-        }
-        if (touchPoint == Point.Miss)
-        {
-            Debug.Log($"{touchPoint}");
         }
     }
 
@@ -93,17 +92,17 @@ public class TouchNotesTrigger : MonoBehaviour
         Vector3 objectPosition = obj.transform.position;
         Vector3 triggerPosition = transform.position;
 
-        if (objectPosition.x > triggerPosition.x + size.x / 2 || objectPosition.x < triggerPosition.x - size.x / 2)
+        if (objectPosition.x > triggerPosition.x + size.x || objectPosition.x < triggerPosition.x - size.x)
         {
             return false;
         }
 
-        if (objectPosition.y > triggerPosition.y + size.y / 2 || objectPosition.y < triggerPosition.y - size.y / 2)
+        if (objectPosition.y > triggerPosition.y + size.y || objectPosition.y < triggerPosition.y - size.y)
         {
             return false;
         }
 
-        if (objectPosition.z > triggerPosition.z + size.z / 2 || objectPosition.z < triggerPosition.z - size.z / 2)
+        if (objectPosition.z > triggerPosition.z + size.z || objectPosition.z < triggerPosition.z - size.z)
         {
             return false;
         }
